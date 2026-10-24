@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Dunk Natachai | A Little Universe
+   1. Tokens   2. Base   3. Layout   4. Header   5. Hero   6. Cards
+   7. Works    8. Gallery   9. Wish   10. Footer   11. Effects   12. Responsive
+   ========================================================================== */
+
+/* 1. TOKENS ---------------------------------------------------------------- */
+:root {
+  --cream: #fff8f0;
+  --paper: #fffdf9;
+  --peach: #f2c4ad;
+  --peach-soft: #f8e2d4;
+  --deep: #d2805f;
+  --brown: #60483d;
+  --soft: #7d6458;
+  --ink: #382a25;
+  --line: #eadbd0;
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius: 24px;
+  --shadow: 0 18px 50px rgb(96 72 61 / 0.12);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 2. BASE ------------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  background:
+    radial-gradient(ellipse at 90% 0%, rgb(242 196 173 / 0.35), transparent 45%),
+    radial-gradient(ellipse at 0% 60%, rgb(248 226 212 / 0.6), transparent 40%),
+    var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .quote, .brand { font-family: var(--font-display); font-weight: 600; }
+h1, h2, h3, p { margin-top: 0; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2px solid var(--deep); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 100;
+  padding: 10px 16px; border-radius: 10px; background: var(--brown); color: #fff;
+}
+.skip-link:focus { top: 12px; }
+
+/* 3. LAYOUT ---------------------------------------------------------------- */
+.wrap { width: min(1120px, 100% - 50px); margin-inline: auto; }
+.section { padding-block: 64px; }
+.muted { color: var(--soft); }
+.small { font-size: 0.85rem; }
+
+.heading { margin-bottom: 30px; }
+.heading h2, .note h2 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.15; margin: 8px 0; }
+.heading p { max-width: 560px; color: var(--soft); margin: 0; }
+.kicker { color: var(--deep); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 12px 22px; border: 1px solid var(--brown); border-radius: 999px;
+  font: 500 0.95rem var(--font-body); cursor: pointer;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgb(96 72 61 / 0.18); }
+.btn--primary { background: var(--brown); color: #fff; }
+.btn--ghost { background: transparent; color: var(--brown); border-color: #cdb7a8; }
+.btn--ghost:hover { background: #fff; }
+
+.status { min-height: 1.6em; margin: 14px 0 0; color: var(--brown); font-weight: 500; }
+
+/* 4. HEADER ---------------------------------------------------------------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgb(255 248 240 / 0.82);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 16px; }
+.brand { font-size: 1.15rem; }
+.brand span, h1 em { color: var(--deep); }
+.nav nav { display: flex; gap: 6px; }
+.nav nav a {
+  padding: 6px 14px; border-radius: 999px; color: var(--soft); font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+.nav nav a:hover, .nav nav a.is-active { background: var(--peach-soft); color: var(--brown); }
+
+/* 5. HERO ------------------------------------------------------------------ */
+.hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 55px; padding-block: 70px 50px; }
+
+.pill {
+  display: inline-block; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px;
+  background: rgb(255 255 255 / 0.65); color: var(--soft);
+  font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.hero h1 { font-size: clamp(3rem, 7vw, 5.6rem); line-height: 1.02; letter-spacing: -0.035em; margin: 22px 0; }
+.hero h1 em { font-style: italic; font-weight: 400; }
+.hero p { max-width: 500px; color: var(--soft); font-size: 1.05rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+
+.hero__art { position: relative; min-height: 470px; display: grid; place-items: center; }
+.sun {
+  position: absolute; right: 2%; top: 10px; width: 310px; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff1e6, var(--peach-soft) 55%, var(--peach));
+  animation: breathe 7s ease-in-out infinite;
+}
+.portrait {
+  position: relative; z-index: 1; margin: 0;
+  width: min(100%, 360px); aspect-ratio: 3 / 4; padding: 10px;
+  border-radius: 50% 50% 22px 22px / 38% 38% 22px 22px;
+  background: linear-gradient(145deg, #f7dccd, #e4b49a);
+  box-shadow: var(--shadow); transform: rotate(2deg);
+  transition: transform 0.6s var(--ease);
+}
+.portrait:hover { transform: rotate(0); }
+
+.float-card {
+  position: absolute; z-index: 2; right: 0; bottom: 26px; max-width: 210px; padding: 16px;
+  border-radius: 18px; background: var(--paper); box-shadow: var(--shadow);
+  color: var(--soft); font-size: 0.86rem;
+  animation: bob 6s ease-in-out infinite;
+}
+.float-card b { display: block; margin-bottom: 2px; color: var(--brown); font: 600 1.05rem var(--font-display); }
+
+.bloom { position: absolute; z-index: 2; color: var(--deep); animation: bob 5s ease-in-out infinite; }
+.bloom--1 { left: 4%; top: 18%; font-size: 2rem; }
+.bloom--2 { left: 12%; bottom: 14%; font-size: 1.4rem; animation-delay: -2s; opacity: 0.7; }
+
+/* Media: image with graceful fallback (replaces the [hidden] toggling) */
+.media { position: relative; display: block; width: 100%; height: 100%; overflow: hidden; border-radius: inherit; }
+.media img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s ease, transform 0.8s var(--ease); }
+.media.is-loaded img { opacity: 1; }
+.media__fallback {
+  position: absolute; inset: 0; display: grid; place-content: center; gap: 4px; padding: 20px; text-align: center;
+  color: var(--brown); background: linear-gradient(150deg, #f9e6d9, #edc2aa 60%, #d9a38a);
+}
+.media.is-loaded .media__fallback { display: none; }
+.media__fallback > span { font-size: 2.6rem; }
+.media__fallback strong { font: 600 1.5rem var(--font-display); }
+
+/* 6. CARDS ----------------------------------------------------------------- */
+.card { padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+.card h3 { font-size: 1.55rem; margin-bottom: 12px; }
+.card p { color: var(--soft); }
+
+.about-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 20px; }
+.card--quote { margin: 0; display: flex; flex-direction: column; justify-content: center; background: #f4dfd2; }
+.quote-mark { font: 5rem/0.7 var(--font-display); color: var(--deep); }
+.quote { font-size: 1.6rem; line-height: 1.35; margin: 0 0 14px; color: var(--ink) !important; font-weight: 400; }
+.card--quote footer { color: var(--soft); font-size: 0.9rem; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.tags li { padding: 6px 13px; border-radius: 999px; background: #fff1e7; color: var(--soft); font-size: 0.83rem; }
+
+/* 7. WORKS ----------------------------------------------------------------- */
+.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.work { padding: 0; overflow: hidden; transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease); }
+.work:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.work__art {
+  height: 150px; display: grid; place-content: center; gap: 4px; text-align: center;
+  background: linear-gradient(140deg, #f8e5d8, #edc4ad); color: var(--brown);
+}
+.work__art span { font-size: 2.2rem; transition: transform 0.4s var(--ease); }
+.work:hover .work__art span { transform: scale(1.2) rotate(-6deg); }
+.work__art small { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.work__body { padding: 22px; }
+.work__body h3 { font-size: 1.3rem; }
+.work__body p { margin: 0; font-size: 0.92rem; }
+
+/* 8. GALLERY --------------------------------------------------------------- */
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 18px; }
+.shot {
+  padding: 8px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper);
+  cursor: zoom-in; aspect-ratio: 3 / 4;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.shot:hover { transform: translateY(-6px) rotate(-0.8deg); box-shadow: var(--shadow); }
+.shot:nth-child(2):hover { transform: translateY(-6px) rotate(0.8deg); }
+.shot .media { border-radius: 17px; }
+.shot:hover img { transform: scale(1.05); }
+
+.lightbox {
+  max-width: min(92vw, 560px); max-height: 92vh; padding: 10px; border: 0; border-radius: 22px;
+  background: var(--paper); box-shadow: 0 30px 90px rgb(0 0 0 / 0.4);
+}
+.lightbox::backdrop { background: rgb(56 42 37 / 0.78); backdrop-filter: blur(6px); }
+.lightbox img { width: 100%; max-height: calc(92vh - 20px); object-fit: contain; border-radius: 14px; }
+.lightbox__close {
+  position: absolute; top: 18px; right: 18px; width: 38px; height: 38px; border: 0; border-radius: 50%;
+  background: rgb(255 253 249 / 0.9); color: var(--brown); font-size: 1rem; cursor: pointer;
+}
+
+/* 9. WISH ------------------------------------------------------------------ */
+.note {
+  display: flex; justify-content: space-between; align-items: center; gap: 28px;
+  padding: clamp(26px, 5vw, 52px); border-radius: 30px;
+  background: linear-gradient(135deg, #f6e3d6, #f0cdb8);
+}
+.note p { max-width: 640px; color: var(--soft); }
+
+/* 10. FOOTER --------------------------------------------------------------- */
+.site-footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--soft); font-size: 0.85rem; }
+.footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.heart { color: var(--deep); }
+
+/* 11. EFFECTS -------------------------------------------------------------- */
+.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.js .reveal.is-visible { opacity: 1; transform: none; }
+.works-grid .reveal:nth-child(2), .gallery .reveal:nth-child(2) { transition-delay: 0.1s; }
+.works-grid .reveal:nth-child(3), .gallery .reveal:nth-child(3) { transition-delay: 0.2s; }
+
+.petals { position: fixed; inset: 0; z-index: 90; overflow: hidden; pointer-events: none; }
+.petal {
+  position: absolute; bottom: -30px; color: var(--deep);
+  animation: drift var(--duration, 5s) ease-in forwards;
+}
+
+@keyframes bob { 50% { transform: translateY(-9px); } }
+@keyframes breathe { 50% { transform: scale(1.05); } }
+@keyframes drift {
+  from { transform: translate(0, 0) rotate(0); opacity: 0; }
+  10% { opacity: 1; }
+  to { transform: translate(var(--sway, 30px), -105vh) rotate(var(--spin, 200deg)); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+
+/* 12. RESPONSIVE ----------------------------------------------------------- */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding-block: 48px 30px; gap: 30px; }
+  .hero__art { min-height: 420px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .works-grid { grid-template-columns: 1fr 1fr; }
+  .note { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 560px) {
+  .wrap { width: min(1120px, 100% - 34px); }
+  .nav { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .nav nav { flex-wrap: wrap; margin-inline: -14px; }
+  .works-grid, .gallery { grid-template-columns: 1fr; }
+  .shot { max-width: 340px; margin-inline: auto; width: 100%; }
+  .portrait { width: min(100%, 290px); }
+  .float-card { max-width: 165px; font-size: 0.78rem; }
+  .section { padding-block: 46px; }
+}
