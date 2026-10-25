@@ -2,7 +2,7 @@
 
 > A little corner of the internet dedicated to Dunk Natachai, made with code, creativity, and appreciation. ✨
 
-🌐 **Live Website:** [Visit the Website](YOUR_GITHUB_PAGES_LINK_HERE)
+🌐 **Live Website:** [Visit the Website](https://ekta918.github.io/dunk_natachai_little_universe/)
 
 ---
 
